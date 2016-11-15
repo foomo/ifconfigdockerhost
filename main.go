@@ -36,8 +36,10 @@ const name = "org.foomo.ifconfigdockerhost"
 func install() error {
 
 	// copy binary
-	binaryBytes, readErr := ioutil.ReadFile(os.Args[0])
+	binaryName := os.Args[0]
+	binaryBytes, readErr := ioutil.ReadFile(binaryName)
 	if readErr != nil {
+		fmt.Println("did you call me with my full path ?")
 		return readErr
 	}
 	binaryWriteErr := ioutil.WriteFile("/usr/local/bin/ifconfigdockerhost", binaryBytes, 0777)
